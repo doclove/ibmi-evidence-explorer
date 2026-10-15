@@ -1,0 +1,51 @@
+name: Source coverage request
+description: A construct IBM i Evidence Explorer reports as unsupported or misses, which matters for your work.
+title: "Coverage: "
+labels: ["coverage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **This issue is public.** Describe the construct with a few made-up lines, not your real source.
+        Diagnostic codes, counts, and the output of `ibmi-explorer gaps` grouped by command or keyword are
+        helpful; leave out confidential names and cited examples from real members.
+  - type: checkboxes
+    id: data
+    attributes:
+      label: Data check
+      options:
+        - label: The example is synthetic or redacted, and contains no real source or confidential names.
+          required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Source type
+      options:
+        - RPG (free-form)
+        - RPG (fixed-form)
+        - CL
+        - DDS
+        - SQL
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: construct
+    attributes:
+      label: Construct and synthetic example
+      description: The statement, command, keyword, or form, with a minimal made-up example.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What IBM i Evidence Explorer should extract
+      description: For example a call, file use, field, or view base table, and how it should resolve.
+    validations:
+      required: true
+  - type: textarea
+    id: frequency
+    attributes:
+      label: How common is it for you?
+      description: Rough counts (for example from `ibmi-explorer gaps` or diagnostic totals) and why it matters to your task.

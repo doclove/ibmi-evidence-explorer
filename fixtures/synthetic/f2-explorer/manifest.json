@@ -1,0 +1,8 @@
+{
+  "formatVersion": 1,
+  "members": [
+    { "path": "QCLSRC/ORDJOB.clle", "library": "F2LIB", "sourceFile": "QCLSRC", "member": "ORDJOB", "sourceType": "CL", "ccsid": 1208 },
+    { "path": "QRPGLESRC/ORDPOST.rpgle", "library": "F2LIB", "sourceFile": "QRPGLESRC", "member": "ORDPOST", "sourceType": "RPG", "ccsid": 1208 },
+    { "path": "QDDSSRC/ORDHDR.pf", "library": "F2LIB", "sourceFile": "QDDSSRC", "member": "ORDHDR", "sourceType": "DDS", "ccsid": 1208 }
+  ]
+}

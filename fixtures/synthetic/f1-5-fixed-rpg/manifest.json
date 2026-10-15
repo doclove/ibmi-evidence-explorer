@@ -1,0 +1,10 @@
+{
+  "formatVersion": 1,
+  "members": [
+    { "path": "QRPGLESRC/FIXEDINQ.rpgle", "library": "FIXLIB", "sourceFile": "QRPGLESRC", "member": "FIXEDINQ", "sourceType": "RPG", "ccsid": 1208 },
+    { "path": "QRPGLESRC/DECOYS.rpgle", "library": "FIXLIB", "sourceFile": "QRPGLESRC", "member": "DECOYS", "sourceType": "RPG", "ccsid": 1208 },
+    { "path": "QDDSSRC/CUSTMAS.pf", "library": "FIXLIB", "sourceFile": "QDDSSRC", "member": "CUSTMAS", "sourceType": "DDS", "ccsid": 1208 },
+    { "path": "QDDSSRC/CUSTRPT.prtf", "library": "FIXLIB", "sourceFile": "QDDSSRC", "member": "CUSTRPT", "sourceType": "DDS", "ccsid": 1208 },
+    { "path": "QCLSRC/CUSTUPD.clle", "library": "FIXLIB", "sourceFile": "QCLSRC", "member": "CUSTUPD", "sourceType": "CL", "ccsid": 1208 }
+  ]
+}

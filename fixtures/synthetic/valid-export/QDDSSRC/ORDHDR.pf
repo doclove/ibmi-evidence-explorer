@@ -1,0 +1,6 @@
+     A* Synthetic order header file. FIXTURE-CANARY-DDS
+     A          R ORDHDRR
+     A            OHORID         9P 0       TEXT('Order ID')
+     A            OHSTAT         1A         TEXT('Status')
+     A            OHTOTL        11P 2       TEXT('Order total')
+     A          K OHORID

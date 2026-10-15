@@ -1,0 +1,9 @@
+{
+  "formatVersion": 1,
+  "members": [
+    { "path": "QRPGLESRC/ORDINQ.rpgle", "library": "DEMOLIB", "sourceFile": "QRPGLESRC", "member": "ORDINQ", "sourceType": "RPG", "ccsid": 1208 },
+    { "path": "QCLSRC/ORDBATCH.clle", "library": "DEMOLIB", "sourceFile": "QCLSRC", "member": "ORDBATCH", "sourceType": "CL", "ccsid": 1208 },
+    { "path": "QDDSSRC/ORDHDR.pf", "library": "DEMOLIB", "sourceFile": "QDDSSRC", "member": "ORDHDR", "sourceType": "DDS", "ccsid": 1208 },
+    { "path": "QSQLSRC/ORDVIEW.sql", "library": "DEMOLIB", "sourceFile": "QSQLSRC", "member": "ORDVIEW", "sourceType": "SQL", "ccsid": 1208 }
+  ]
+}

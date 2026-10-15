@@ -1,0 +1,4 @@
+-- Synthetic customer list view. FIXTURE-CANARY-SQL
+CREATE VIEW CUSTLIST AS
+  SELECT CMID, CMNAME
+    FROM CUSTMAS;

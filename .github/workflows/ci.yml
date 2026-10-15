@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+  DOTNET_NOLOGO: "1"
+  # Opt-in tests stay off in CI: no live model and no large stress run.
+  IBMI_EXPLORER_EVAL_OLLAMA_MODEL: ""
+  IBMI_EXPLORER_STRESS: ""
+
+jobs:
+  build-test:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        # ubuntu-24.04 and windows-2025 are x64; macos-15 is arm64.
+        os: [ubuntu-24.04, windows-2025, macos-15]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Show SDK and platform
+        shell: bash
+        run: |
+          dotnet --version
+          uname -a || true
+
+      - name: Restore (locked)
+        run: dotnet restore IbmiEvidenceExplorer.slnx --locked-mode
+
+      - name: Build (warnings are errors)
+        run: dotnet build IbmiEvidenceExplorer.slnx --no-restore
+
+      - name: Test (synthetic fixtures only; skipped tests are listed with their reasons)
+        run: dotnet test IbmiEvidenceExplorer.slnx --no-build --logger "console;verbosity=normal"
+
+      - name: Format verification
+        run: dotnet format IbmiEvidenceExplorer.slnx --verify-no-changes --no-restore
+
+      - name: Vulnerable package check
+        shell: bash
+        run: |
+          dotnet list IbmiEvidenceExplorer.slnx package --vulnerable --include-transitive | tee vulnerable.txt
+          if grep -q "has the following vulnerable packages" vulnerable.txt; then exit 1; fi
+
+      - name: Synthetic demo smoke test (README five-minute path, bash)
+        shell: bash
+        run: |
+          set -euo pipefail
+          ibmi-explorer() { dotnet run --project src/IbmiEvidenceExplorer.Cli --no-build -- "$@"; }
+          export IBMI_EXPLORER_STORAGE="$(mktemp -d)"
+          M=(--library F2LIB --source-file QRPGLESRC --member ORDPOST --type RPG)
+          ibmi-explorer help > /dev/null
+          SNAP=$(ibmi-explorer import --workspace demo --source fixtures/synthetic/f2-explorer 2>/dev/null \
+            | sed -n 's/^Imported snapshot \(snap-[0-9a-f]*\).*/\1/p')
+          [[ "$SNAP" =~ ^snap-[0-9a-f]{32}$ ]]
+          ibmi-explorer index --workspace demo --snapshot "$SNAP" 2>/dev/null | tee out.txt
+          grep -q "artifacts 8, edges 5 (resolved 4, unresolved 1)" out.txt
+          ibmi-explorer search --workspace demo --snapshot "$SNAP" --query ORDHDR 2>/dev/null | tee out.txt
+          grep -q "1 exact match(es) for 'ORDHDR'." out.txt
+          ibmi-explorer dependencies --workspace demo --snapshot "$SNAP" "${M[@]}" 2>/dev/null | tee out.txt
+          grep -q "2 direct edge(s), 0 unresolved." out.txt
+          ibmi-explorer explore --workspace demo --snapshot "$SNAP" "${M[@]}" 2>/dev/null | tee out.txt
+          grep -q "no model was called" out.txt
+          ibmi-explorer inspect --workspace demo --snapshot "$SNAP" "${M[@]}" --lines 12 2>/dev/null | tee out.txt
+          grep -q "chain ordId ORDHDR;" out.txt
+          # README step 4 runs after the demo, before cleanup (step 5).
+          ibmi-explorer explain --workspace demo --snapshot "$SNAP" "${M[@]}" --preview-context 2>/dev/null > out.txt
+          grep -q "<<<IBMI_EXPLORER_CONTEXT_BEGIN>>>" out.txt
+          rm -rf "$IBMI_EXPLORER_STORAGE" out.txt
+
+      - name: Synthetic demo smoke test (README step 2b, Windows PowerShell 5.1, ErrorActionPreference Stop)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($PSVersionTable.PSVersion.Major -ne 5) { throw "expected Windows PowerShell 5.1, got $($PSVersionTable.PSVersion)" }
+          function ibmi-explorer {
+            $ErrorActionPreference = 'Continue'
+            dotnet run --project src/IbmiEvidenceExplorer.Cli --no-build -- @args 2>$null
+          }
+          function Check([string] $text, [string] $expected) {
+            if ($LASTEXITCODE -ne 0) { throw "exit code $LASTEXITCODE" }
+            if (-not $text.Contains($expected)) { throw "missing: $expected" }
+          }
+          $env:IBMI_EXPLORER_STORAGE = Join-Path ([IO.Path]::GetTempPath()) ("ibmi-explorer-demo-" + [guid]::NewGuid())
+          $M = @('--library', 'F2LIB', '--source-file', 'QRPGLESRC', '--member', 'ORDPOST', '--type', 'RPG')
+          Check ((ibmi-explorer help) -join "`n") 'Usage:'
+          $SNAP = (ibmi-explorer import --workspace demo --source fixtures/synthetic/f2-explorer --json | ConvertFrom-Json).snapshotId
+          if ($SNAP -notmatch '^snap-[0-9a-f]{32}$') { throw "bad snapshot id: $SNAP" }
+          Check ((ibmi-explorer index --workspace demo --snapshot $SNAP) -join "`n") 'artifacts 8, edges 5 (resolved 4, unresolved 1)'
+          Check ((ibmi-explorer search --workspace demo --snapshot $SNAP --query ORDHDR) -join "`n") "1 exact match(es) for 'ORDHDR'."
+          Check ((ibmi-explorer dependencies --workspace demo --snapshot $SNAP @M) -join "`n") '2 direct edge(s), 0 unresolved.'
+          Check ((ibmi-explorer explore --workspace demo --snapshot $SNAP @M) -join "`n") 'no model was called'
+          Check ((ibmi-explorer inspect --workspace demo --snapshot $SNAP @M --lines 12) -join "`n") 'chain ordId ORDHDR;'
+          Check ((ibmi-explorer explain --workspace demo --snapshot $SNAP @M --preview-context) -join "`n") '<<<IBMI_EXPLORER_CONTEXT_BEGIN>>>'
+          Remove-Item -Recurse -Force $env:IBMI_EXPLORER_STORAGE; Remove-Item Env:IBMI_EXPLORER_STORAGE

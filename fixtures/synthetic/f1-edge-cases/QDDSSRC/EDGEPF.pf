@@ -1,0 +1,6 @@
+     A* Synthetic edge file. FIXTURE-CANARY-DDS
+     A          R EDGER
+     A            EFLD1         10A
+     A          K EFLD1
+     A          K NOFIELD
+     A          S EFLD1                     COMP(EQ 'A')

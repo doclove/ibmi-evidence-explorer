@@ -1,0 +1,21 @@
+{
+  "formatVersion": 1,
+  "members": [
+    { "path": "QCLSRC/CALLS.clle", "library": "EDGELIB", "sourceFile": "QCLSRC", "member": "CALLS", "sourceType": "CL", "ccsid": 1208 },
+    { "path": "QCLSRC/CYCLEA.clle", "library": "EDGELIB", "sourceFile": "QCLSRC", "member": "CYCLEA", "sourceType": "CL", "ccsid": 1208 },
+    { "path": "QCLSRC/CYCLEB.clle", "library": "EDGELIB", "sourceFile": "QCLSRC", "member": "CYCLEB", "sourceType": "CL", "ccsid": 1208 },
+    { "path": "QCLSRC/DUPPGM.clle", "library": "EDGELIB", "sourceFile": "QCLSRC", "member": "DUPPGM", "sourceType": "CL", "ccsid": 1208 },
+    { "path": "QCLSRC2/DUPPGM.clle", "library": "EDGELIB", "sourceFile": "QCLSRC2", "member": "DUPPGM", "sourceType": "CL", "ccsid": 1208 },
+    { "path": "QCLSRC/LONECR.clle", "library": "EDGELIB", "sourceFile": "QCLSRC", "member": "LONECR", "sourceType": "CL", "ccsid": 1208 },
+    { "path": "QRPGLESRC/EDGERPG.rpgle", "library": "EDGELIB", "sourceFile": "QRPGLESRC", "member": "EDGERPG", "sourceType": "RPG", "ccsid": 1208 },
+    { "path": "QRPGLESRC/FIXED.rpgle", "library": "EDGELIB", "sourceFile": "QRPGLESRC", "member": "FIXED", "sourceType": "RPG", "ccsid": 1208 },
+    { "path": "QDDSSRC/EDGEPF.pf", "library": "EDGELIB", "sourceFile": "QDDSSRC", "member": "EDGEPF", "sourceType": "DDS", "ccsid": 1208 },
+    { "path": "QDDSSRC/DUPFILE.pf", "library": "EDGELIB", "sourceFile": "QDDSSRC", "member": "DUPFILE", "sourceType": "DDS", "ccsid": 1208 },
+    { "path": "QDDSSRC2/DUPFILE.pf", "library": "EDGELIB", "sourceFile": "QDDSSRC2", "member": "DUPFILE", "sourceType": "DDS", "ccsid": 1208 },
+    { "path": "QSQLSRC/STRVW.sql", "library": "EDGELIB", "sourceFile": "QSQLSRC", "member": "STRVW", "sourceType": "SQL", "ccsid": 1208 },
+    { "path": "QSQLSRC/JOINVW.sql", "library": "EDGELIB", "sourceFile": "QSQLSRC", "member": "JOINVW", "sourceType": "SQL", "ccsid": 1208 },
+    { "path": "QSQLSRC/QUOTED.sql", "library": "EDGELIB", "sourceFile": "QSQLSRC", "member": "QUOTED", "sourceType": "SQL", "ccsid": 1208 },
+    { "path": "QSQLSRC/MALFORM.sql", "library": "EDGELIB", "sourceFile": "QSQLSRC", "member": "MALFORM", "sourceType": "SQL", "ccsid": 1208 },
+    { "path": "QSQLSRC/LONECR.sql", "library": "EDGELIB", "sourceFile": "QSQLSRC", "member": "LONECR", "sourceType": "SQL", "ccsid": 1208 }
+  ]
+}

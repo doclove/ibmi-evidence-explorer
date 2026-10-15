@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The only product assembly allowed to use networking (D-016): a loopback-only Ollama adapter. -->
+  <PropertyGroup>
+    <RootNamespace>IbmiEvidenceExplorer.Infrastructure.Ollama</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IbmiEvidenceExplorer.Core\IbmiEvidenceExplorer.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="IbmiEvidenceExplorer.Tests" />
+  </ItemGroup>
+</Project>

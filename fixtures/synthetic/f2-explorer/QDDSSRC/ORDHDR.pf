@@ -1,0 +1,5 @@
+     A* Synthetic order header. FIXTURE-CANARY-DDS
+     A          R ORDREC                    TEXT('Order header')
+     A            OHID           7P 0       TEXT('Order ID')
+     A            OHSTAT         1A         TEXT('Status')
+     A          K OHID

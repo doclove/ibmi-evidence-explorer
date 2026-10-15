@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>IbmiEvidenceExplorer.Cli</RootNamespace>
+    <AssemblyName>ibmi-explorer</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IbmiEvidenceExplorer.Core\IbmiEvidenceExplorer.Core.csproj" />
+    <ProjectReference Include="..\IbmiEvidenceExplorer.Infrastructure\IbmiEvidenceExplorer.Infrastructure.csproj" />
+    <ProjectReference Include="..\IbmiEvidenceExplorer.Infrastructure.Ollama\IbmiEvidenceExplorer.Infrastructure.Ollama.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="IbmiEvidenceExplorer.Tests" />
+  </ItemGroup>
+</Project>

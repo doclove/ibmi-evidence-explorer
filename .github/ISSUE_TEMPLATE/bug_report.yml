@@ -1,0 +1,67 @@
+name: Bug report
+description: A command failed, crashed, or gave a wrong result on synthetic input.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **This issue is public.** Use synthetic or redacted input only. Do not paste real IBM i source,
+        snapshots, indexes, output of `explore`, `inspect`, or `explain` (they print source lines),
+        preparation plans or reports, confidential library or member names, credentials, or logs from
+        real runs. Report vulnerabilities privately (see SECURITY.md).
+  - type: checkboxes
+    id: data
+    attributes:
+      label: Data check
+      options:
+        - label: Everything in this issue is synthetic or redacted, and contains no real source or confidential names.
+          required: true
+  - type: input
+    id: version
+    attributes:
+      label: IBM i Evidence Explorer commit
+      description: Output of `git rev-parse --short HEAD`.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Operating system and architecture
+      options:
+        - macOS arm64
+        - macOS x64
+        - Linux x64
+        - Linux arm64
+        - Windows x64
+        - Windows arm64
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: dotnet
+    attributes:
+      label: .NET SDK version
+      description: Output of `dotnet --version`.
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: The exact command line, with paths shortened or replaced.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Minimal synthetic reproduction
+      description: A small made-up manifest and member, or the name of a file in `fixtures/synthetic`, that shows the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual result
+      description: What you expected, and what happened. Diagnostic codes and exit codes are most useful.
+    validations:
+      required: true

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>IbmiEvidenceExplorer.Infrastructure</RootNamespace>
+    <!-- Required by LibraryImport source generation for the no-follow source reader (SecureSourceTree). -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IbmiEvidenceExplorer.Core\IbmiEvidenceExplorer.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="IbmiEvidenceExplorer.Tests" />
+  </ItemGroup>
+</Project>

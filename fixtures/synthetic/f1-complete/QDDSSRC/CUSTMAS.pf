@@ -1,0 +1,6 @@
+     A* Synthetic customer master. FIXTURE-CANARY-DDS
+     A                                      UNIQUE
+     A          R CUSTREC                   TEXT('Customer')
+     A            CMID           7P 0       TEXT('Customer ID')
+     A            CMNAME        30A         COLHDG('Name')
+     A          K CMID

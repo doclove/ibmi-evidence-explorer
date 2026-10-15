@@ -1,0 +1,6 @@
+{
+  "formatVersion": 1,
+  "members": [
+    { "path": "QCLSRC/../../outside.clle", "library": "DEMOLIB", "sourceFile": "QCLSRC", "member": "HELLO", "sourceType": "CL", "ccsid": 1208 }
+  ]
+}

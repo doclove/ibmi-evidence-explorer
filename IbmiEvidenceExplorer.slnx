@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/IbmiEvidenceExplorer.Cli/IbmiEvidenceExplorer.Cli.csproj" />
+    <Project Path="src/IbmiEvidenceExplorer.Core/IbmiEvidenceExplorer.Core.csproj" />
+    <Project Path="src/IbmiEvidenceExplorer.Infrastructure/IbmiEvidenceExplorer.Infrastructure.csproj" />
+    <Project Path="src/IbmiEvidenceExplorer.Infrastructure.Ollama/IbmiEvidenceExplorer.Infrastructure.Ollama.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/IbmiEvidenceExplorer.Tests/IbmiEvidenceExplorer.Tests.csproj" />
+  </Folder>
+</Solution>

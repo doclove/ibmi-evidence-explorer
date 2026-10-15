@@ -1,0 +1,18 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{cs,csproj,props,slnx,json,md}]
+indent_style = space
+
+[*.cs]
+indent_size = 4
+# OperationResult<T>.Success/Failure are intentional generic factories.
+dotnet_diagnostic.CA1000.severity = none
+
+[*.{csproj,props,slnx,json}]
+indent_size = 2

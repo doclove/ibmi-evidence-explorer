@@ -1,0 +1,4 @@
+/* Synthetic update program. FIXTURE-CANARY-FIXED-CL */
+PGM PARM(&CUSTID)
+  DCL VAR(&CUSTID) TYPE(*DEC) LEN(7 0)
+ENDPGM

@@ -1,0 +1,53 @@
+name: Usefulness feedback
+description: Tell us whether IBM i Evidence Explorer helped with a real task, and what was missing.
+title: "Feedback: "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **This issue is public.** Describe your task and results in general terms. Do not include real
+        source, confidential names, or output from real runs.
+  - type: textarea
+    id: task
+    attributes:
+      label: What were you trying to find out?
+      description: For example "which programs use a file", "what does this job call", or "can I trust this dependency list".
+    validations:
+      required: true
+  - type: dropdown
+    id: helped
+    attributes:
+      label: Did IBM i Evidence Explorer help?
+      options:
+        - Yes, it answered the question
+        - Partly
+        - No
+    validations:
+      required: true
+  - type: textarea
+    id: time
+    attributes:
+      label: Time compared with your usual approach
+      description: Roughly how long it took with IBM i Evidence Explorer, and how long it usually takes.
+  - type: textarea
+    id: wrong
+    attributes:
+      label: Wrong, missing, or confusing results
+      description: Missing links, wrong links, unclear statuses or gaps, or documentation problems.
+  - type: dropdown
+    id: ai
+    attributes:
+      label: Did you try the optional local AI draft (`explain`)?
+      options:
+        - "No"
+        - Yes, it was useful
+        - Yes, it was not useful
+  - type: textarea
+    id: concerns
+    attributes:
+      label: Privacy or security concerns that would stop you using it
+  - type: textarea
+    id: next
+    attributes:
+      label: What would make it worth using regularly?
